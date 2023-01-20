@@ -1,3 +1,4 @@
+import json
 import time
 
 import requests
@@ -10,7 +11,7 @@ WEBHOOK_URL = "https://discord.com/api/webhooks/1066061125709463633/uiPa_3GYsU95
 
 def send_webhook(data):
     try:
-        response = requests.post(WEBHOOK_URL, data=data)
+        response = requests.post(WEBHOOK_URL, headers={'Content-Type': 'application/json'}, data=json.dumps(data))
         if response.status_code == 200:
             pass
         else:
