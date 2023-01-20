@@ -39,7 +39,7 @@ def scrapper(callback):
                                 "author": {
                                     "name": "NEW NOTICE!"
                                 },
-                                "timestamp": notice_datetime.isoformat()+"Z"
+                                "timestamp": notice_datetime.strftime('%Y-%m-%dT%H:%M:%S')+'Z'
                             }
                         ],
                         "attachments": []
