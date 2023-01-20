@@ -14,7 +14,7 @@ def get_current_date():
     }
 
 
-def scrapper():
+def scrapper(callback):
     date = get_current_date()
     last_notice_datetime = datetime.now().astimezone()
     try:
@@ -29,10 +29,21 @@ def scrapper():
                     last_notice_datetime = notice_datetime
                     title = notice.find_next('h1', class_='entry-title').text
                     url = notice.find_next('h1', class_='entry-title').find('a').get('href')
-                    # TODO => send message
-                    print("NEW NOTICE:", title)
-                    print(url)
-                    print(notice_datetime)
+                    callback({
+                        "content": None,
+                        "embeds": [
+                            {
+                                "title": title,
+                                "url": url,
+                                "color": 1756421,
+                                "author": {
+                                    "name": "NEW NOTICE!"
+                                },
+                                "timestamp": notice_datetime.isoformat()+"Z"
+                            }
+                        ],
+                        "attachments": []
+                    })
         else:
             pass
     except Exception as error:
