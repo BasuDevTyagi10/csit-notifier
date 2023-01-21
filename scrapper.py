@@ -3,7 +3,6 @@ import requests
 from bs4 import BeautifulSoup
 
 import logging
-logging.basicConfig(filename='scrapper.log', filemode='w', format='[%(levelname)s] %(asctime)s | %(name)s.%(funcName)s - %(message)s')
 
 BASE_URL = "https://csitgeu.in/wp/"
 
@@ -18,6 +17,7 @@ def get_current_date():
 
 
 def scrapper(callback):
+    logging.info("Calling scrapper...")
     date = get_current_date()
     last_notice_datetime = datetime.now().astimezone()
     try:

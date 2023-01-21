@@ -6,7 +6,13 @@ from scrapper import scrapper
 import schedule
 
 import logging
-logging.basicConfig(filename='main.log', filemode='w', format='[%(levelname)s] %(asctime)s | %(name)s.%(funcName)s - %(message)s')
+stream_handler = logging.StreamHandler()
+file_handler = logging.FileHandler(filename='logs.log')
+logging.basicConfig(
+    level=logging.DEBUG,
+    format='[%(levelname)s] %(asctime)s | %(name)s.%(funcName)s - %(message)s',
+    handlers=[stream_handler, file_handler]
+)
 
 WEBHOOK_URL = "https://discord.com/api/webhooks/1066061125709463633/uiPa_3GYsU95hJtjMoq3zBSRsd25hY4nidcpx_s89vsQBXXhjoJWZl3GX4S7Bx6hYC5k"
 
