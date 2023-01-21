@@ -31,12 +31,10 @@ def send_webhook(data):
 
 if __name__ == '__main__':
     try:
-        def schedule_job():
-            schedule.every().hour.do(scrapper, send_webhook)
-            return schedule.CancelJob
+        logging.info("Starting CSIT Notifier...")
+        schedule.every().hour.do(scrapper, send_webhook)
 
-        schedule.every().day.at('09:00').do(schedule_job)
-
+        logging.info("Running scheduler: schedule.every().hour.do(scrapper, send_webhook)")
         while True:
             schedule.run_pending()
             time.sleep(1)
