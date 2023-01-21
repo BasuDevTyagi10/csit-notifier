@@ -28,7 +28,7 @@ def scrapper(callback):
         if response.status_code == 200:
             notices = soup.findAll('article')
             logging.info(f"Fetched {len(notices)} notice(s)")
-            for notice in notices:
+            for notice in notices[::-1]:
                 timestamp = notice.find_next('span', class_='entry-date').find('time').get('datetime')
                 notice_datetime = datetime.strptime(timestamp, '%Y-%m-%dT%H:%M:%S%z')
                 logging.info(f"Last recent notice timestamp: {last_notice_datetime}")
